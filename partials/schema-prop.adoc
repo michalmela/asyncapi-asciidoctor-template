@@ -1,5 +1,5 @@
-{% from "./schema-table.md" import schemaTable %}
-{% macro schemaProp(prop, propName, required=false, path='', circularPropsParent) %}
+{% from "./schema-table.adoc" import schemaTable %}
+{% macro schemaProp(prop, propName, required=false, path='', circularPropsParent, additionalDescription='') %}
 
 {{- schemaTable(prop, propName, required, path) -}}
 {%- for p in prop.anyOf() -%}{% set pName %}<{{ loop.index }}>{% endset %}

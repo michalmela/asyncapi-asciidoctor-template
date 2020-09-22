@@ -1,8 +1,9 @@
-{% from "./parameters.md" import parameters %}
-{% from "./operation.md" import operation %}
+{% from "./parameters.adoc" import parameters %}
+{% from "./operation.adoc" import operation %}
+
 {% macro channel(chan, channelName) %}
 
-<a name="channel-{{channelName}}"></a>
+=== `{{channelName}}`
 
 {% if chan.description() -%}
 {{ chan.description() | safe }}

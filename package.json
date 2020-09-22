@@ -1,23 +1,25 @@
 {
-  "name": "@asyncapi/markdown-template",
-  "version": "0.10.0",
-  "description": "Markdown template for the AsyncAPI generator.",
+  "name": "@michalmela/asyncapi-asciidoctor-template",
+  "version": "0.0.1",
+  "description": "Asciidoctor template for the AsyncAPI generator.",
   "keywords": [
     "asyncapi",
     "generator",
-    "markdown",
+    "adoc",
+    "asciidoc",
+    "asciidoctor",
     "template"
   ],
-  "author": "Fran Mendez <fmvilas@gmail.com> (fmvilas.com)",
+  "author": "Michal Mela",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asyncapi/markdown-template.git"
+    "url": "git+https://github.com/michalmela/asyncapi-asciidoctor-template.git"
   },
   "bugs": {
-    "url": "https://github.com/asyncapi/markdown-template/issues"
+    "url": "https://github.com/michalmela/asyncapi-asciidoctor-template/issues"
   },
-  "homepage": "https://github.com/asyncapi/markdown-template#readme",
+  "homepage": "https://github.com/michalmela/asyncapi-asciidoctor-template#readme",
   "scripts": {
     "test": "echo \"No test specified yet\"",
     "release": "semantic-release",
@@ -67,7 +69,12 @@
     "parameters": {
       "outFilename": {
         "description": "The name of the output markdown file",
-        "default": "asyncapi.md",
+        "default": "asyncapi.adoc",
+        "required": false
+      },
+      "channelLabel": {
+        "description": "How you want to label the _Channels_ section (e.g. _Topics_ may make sense for MQTT)",
+        "default": "Channel",
         "required": false
       }
     }

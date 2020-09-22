@@ -1,0 +1,27 @@
+{% from "./message.adoc" import message %}
+
+{% macro operation(op, channelName) %}
+{% set summary = op.summary() %}
+==== {% if op.isPublish() %} `publish`{% endif %}{% if op.isSubscribe() %} `subscribe`{% endif %}
+
+{% if summary -%} *{{ summary }}* {% endif -%}
+
+{{ op.description() }}
+
+// {% if op.hasMultipleMessages() -%}
+Accepts **one of** the following messages:
+
+//      {% for msg in op.messages() -%}
+
+===== Message `{{ msg.uid() }}`
+{{ message(msg) }}
+
+//      {% endfor -%}
+// {%- else -%}
+
+===== Message
+
+{{ message(op.message(0)) }}
+// {%- endif -%}
+
+{% endmacro %}

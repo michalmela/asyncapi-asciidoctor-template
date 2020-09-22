@@ -1,0 +1,75 @@
+{% from "./schema.adoc" import schema %}
+{% from "./tags.adoc" import tags %}
+
+{% macro message(msg) %}
+
+// {% if msg.summary() -%}
+{{ msg.summary() }}
+// {% endif -%}
+
+// {%- if msg.description() -%}
+{{ msg.description() | safe }}
+// {% endif -%}
+
+// {% if msg.headers() -%}
+
+====== {{msg.uid()}} headers
+{{ schema(msg.headers(), 'Message Headers') }}
+
+// {% if msg | getHeadersExamples %}
+
+// {% for ex in msg | getHeadersExamples -%}
+
+.{{msg.uid()}} headers
+====
+```json
+{{ ex | dump(2) | safe }}
+```
+====
+// {% endfor -%}
+// {% else -%}
+
+.{{msg.uid()}} headers _(generated)_
+====
+```json
+{{ msg.headers().json() | generateExample | safe }}
+```
+====
+// {% endif %}
+// {% endif %}
+
+// {% if msg.payload() -%}
+
+====== {{msg.uid()}} payload
+{{ schema(msg.payload(), 'Message Payload') }}
+
+//   {% if msg | getPayloadExamples %}
+
+//     {% for ex in msg | getPayloadExamples %}
+
+.{{msg.uid()}} payload
+====
+```json
+{{ ex | dump(2) | safe }}
+```
+====
+//     {% endfor -%}
+//   {% else -%}
+
+.{{msg.uid()}} payload _(generated)_
+====
+```json
+{{ msg.payload().json() | generateExample | safe }}
+```
+//   {% endif -%}
+// {% endif -%}
+====
+
+
+// {% if msg.hasTags() %}
+
+====== Tags
+{{ tags(msg.tags()) }}
+// {% endif %}
+
+// {% endmacro %}

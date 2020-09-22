@@ -1,0 +1,8 @@
+{% macro schemaTable(prop, propName, required=false, path='', circular=false, additionalDescription='') %}
+
+¦`{{ path | tree }}{{ propName }}` {% if required %}**(required)**{% endif %}
+¦{{ prop.type() }}{%- if prop.anyOf() -%}anyOf{%- endif -%}{%- if prop.allOf() -%}allOf{%- endif -%}{%- if prop.oneOf() %}oneOf{%- endif -%}{%- if prop.items().type %}({{prop.items().type()}}){%- endif -%}
+¦{{additionalDescription}} {{ prop.description() | safe }} {% if circular %}**[CIRCULAR]**{% endif %}
+¦{{ prop.enum() | acceptedValues | safe }}
+
+{%- endmacro -%}

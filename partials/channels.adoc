@@ -1,0 +1,13 @@
+{% from "./channel.adoc" import channel %}
+
+{%- if asyncapi.info().ext('x-channel-label') -%}
+{%- set channelsLabel = asyncapi.info().ext('x-channel-label') + 's' -%}
+{%- else -%}
+{%- set channelsLabel = 'Channels' -%}
+{%- endif -%}
+
+== {{channelsLabel}}
+
+{% for channelName, chan in asyncapi.channels() -%}
+{{ channel(chan, channelName) }}
+{% endfor -%}

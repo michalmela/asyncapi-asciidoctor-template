@@ -1,0 +1,67 @@
+//{% if asyncapi.info().termsOfService() %}
+[#termsOfService]
+== Terms of service
+[{{asyncapi.info().termsOfService()}}]({{asyncapi.info().termsOfService()}})
+//{% endif %}
+//{% if asyncapi.hasServers() %}
+
+[#servers]
+== Servers
+
+[cols=",,",options="header",separator="¦"]
+|===
+¦URL ¦Protocol ¦Description 
+
+//{% for serverName, server in asyncapi.servers() %}
+¦{{server.url()}} ¦{{server.protocol()}}{% if server.protocolVersion() %}{{server.protocolVersion()}}{% endif %} ¦ {{server.description() | safe}}
+
+//  {% if server.variables() and server.variables()[0] is defined %}
+3+a¦
+.URL Variables
+[%collapsible] 
+==== 
+[cols=",,,",options="header",]
+!===
+!Name   !Default value   !Possible values  !Description
+//    {% for varName, var in server.variables() %}
+!{{varName}}
+! {%- if var.hasDefaultValue() %}
+    {{var.defaultValue()}}
+  {% else %}
+    _None_
+  {% endif %}
+a! {%- if var.hasAllowedValues() %}
+  {%- for value in var.allowedValues() -%}
+    * {{value}}
+  {%- endfor -%}
+{% else %}
+  _Any_
+{% endif -%}
+!{{ var.description() | safe }}
+//    {% endfor %}
+!===
+====
+//  {% endif %}
+
+
+
+//  {% if server.security() %}
+3+a¦
+.Security Requirements
+[%collapsible] 
+==== 
+[cols=",,,,,",options="header",]
+!===
+!Type !In !Name !Scheme !Format !Description
+//    {%- for security in server.security() %}
+//      {% set def = asyncapi.components().securityScheme(security.json() | keys | head ) %}
+!{{def.type()}} !{{def.in()}} !{{def.name()}} !{{def.scheme()}} !{{def.bearerFormat()}} !{{def.description() | markdown2html | safe }}
+
+//    {% endfor %}
+!===
+//  {% endif %}
+//{%- endfor %}
+
+
+|===
+//{% endif %}

@@ -1,0 +1,20 @@
+{% from "./schema-prop.adoc" import schemaProp %}
+
+{% macro schema(schema, schemaName, singleRow=false) %}
+
+// {% if not singleRow %}
+[cols=",,,",options="header",separator="¦"]
+|===
+¦Name ¦Type ¦Description ¦Accepted values
+// {% endif %}
+{% for propName, prop in schema.properties() -%}
+{{ schemaProp(prop, propName, required=(schema | isRequired(propName)), path='') }}
+{%- else -%}
+{{ schemaProp(schema, schemaName, path='') }}
+{%- endfor %}
+// {% if not singleRow %}
+|===
+// {% endif %}
+
+
+{% endmacro %}
