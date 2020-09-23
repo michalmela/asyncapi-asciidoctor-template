@@ -8,16 +8,16 @@
 
 {{ op.description() }}
 
-// {% if op.hasMultipleMessages() -%}
+// {% if op.hasMultipleMessages() %}
 Accepts **one of** the following messages:
 
-//      {% for msg in op.messages() -%}
+//      {% for msg in op.messages() %}
 
 ===== Message `{{ msg.uid() }}`
 {{ message(msg) }}
 
 //      {% endfor -%}
-// {%- else -%}
+// {%- else %}
 
 ===== Message
 

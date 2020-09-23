@@ -71,11 +71,6 @@
         "description": "The name of the output markdown file",
         "default": "asyncapi.adoc",
         "required": false
-      },
-      "channelLabel": {
-        "description": "How you want to label the _Channels_ section (e.g. _Topics_ may make sense for MQTT)",
-        "default": "Channel",
-        "required": false
       }
     }
   }

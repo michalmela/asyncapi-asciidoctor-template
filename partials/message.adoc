@@ -3,22 +3,22 @@
 
 {% macro message(msg) %}
 
-// {% if msg.summary() -%}
+// {% if msg.summary() %}
 {{ msg.summary() }}
-// {% endif -%}
+// {% endif %}
 
-// {%- if msg.description() -%}
+// {% if msg.description() %}
 {{ msg.description() | safe }}
-// {% endif -%}
+// {% endif %}
 
-// {% if msg.headers() -%}
+// {% if msg.headers() %}
 
 ====== {{msg.uid()}} headers
 {{ schema(msg.headers(), 'Message Headers') }}
 
 // {% if msg | getHeadersExamples %}
 
-// {% for ex in msg | getHeadersExamples -%}
+// {% for ex in msg | getHeadersExamples %}
 
 .{{msg.uid()}} headers
 ====
@@ -26,8 +26,8 @@
 {{ ex | dump(2) | safe }}
 ```
 ====
-// {% endfor -%}
-// {% else -%}
+// {% endfor %}
+// {% else %}
 
 .{{msg.uid()}} headers _(generated)_
 ====
@@ -38,7 +38,7 @@
 // {% endif %}
 // {% endif %}
 
-// {% if msg.payload() -%}
+// {% if msg.payload() %}
 
 ====== {{msg.uid()}} payload
 {{ schema(msg.payload(), 'Message Payload') }}
@@ -53,16 +53,16 @@
 {{ ex | dump(2) | safe }}
 ```
 ====
-//     {% endfor -%}
-//   {% else -%}
+//     {% endfor %}
+//   {% else %}
 
 .{{msg.uid()}} payload _(generated)_
 ====
 ```json
 {{ msg.payload().json() | generateExample | safe }}
 ```
-//   {% endif -%}
-// {% endif -%}
+//   {% endif %}
+// {% endif %}
 ====
 
 
