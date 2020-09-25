@@ -2,26 +2,20 @@
 
 {% macro operation(op, channelName) %}
 {% set summary = op.summary() %}
-==== {% if op.isPublish() %} `publish`{% endif %}{% if op.isSubscribe() %} `subscribe`{% endif %}
-
-{% if summary -%} *{{ summary }}* {% endif -%}
+==== {% if op.isPublish() %} `PUB`{% endif %}{% if op.isSubscribe() %} `SUB`{% endif %} {% if summary -%} {{ summary }} {% endif -%}
 
 {{ op.description() }}
 
 // {% if op.hasMultipleMessages() %}
 Accepts **one of** the following messages:
+// {%- endif -%}
 
-//      {% for msg in op.messages() %}
+// {% for msg in op.messages() %}
 
-===== Message `{{ msg.uid() }}`
+===== *{% if msg.title() %}{{msg.title()}}{% else %}{{msg.uid()}}{% endif %}* message
+
 {{ message(msg) }}
 
-//      {% endfor -%}
-// {%- else %}
-
-===== Message
-
-{{ message(op.message(0)) }}
-// {%- endif -%}
+// {% endfor -%}
 
 {% endmacro %}

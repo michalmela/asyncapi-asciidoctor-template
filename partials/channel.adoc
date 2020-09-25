@@ -11,7 +11,9 @@
 
 {% if chan.parameters() -%}
 {{- parameters(chan.parameters()) -}}
-{% endif -%}
+{% endif %}
+
+Offers the following operations:
 
 {% if chan.hasPublish() -%}
 {{ operation(chan.publish(), channelName) }}
