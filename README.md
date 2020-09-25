@@ -21,7 +21,6 @@ npm install -g @asyncapi/generator
 |Name|Description|Required|Default|Example|
 |---|---|---|---|---|
 |outFilename|The filename of the output file.|No|`asyncapi.md`|`index.md`|
-|channelLabel|How you want to call _Channels_ in your output|No|`Channel`|`Topic`|
 
 ## Development
 
