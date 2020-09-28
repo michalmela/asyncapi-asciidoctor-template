@@ -7,7 +7,7 @@
 .Parameters {% endif %}
 [%collapsible,caption=]
 ====
-[cols=",,,",options="header",separator="¦"]
+[cols=",,,a",options="header",separator="¦"]
 |===
 ¦Name ¦Type ¦Description ¦Accepted values
 {% for paramName, param in params -%}

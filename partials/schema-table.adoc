@@ -1,8 +1,15 @@
 {% macro schemaTable(prop, propName, required=false, path='', circular=false, additionalDescription='') %}
 
 ¦`{{ path | tree }}{{ propName }}` {% if required %}**(required)**{% endif %}
-¦{{ prop.type() }}{%- if prop.anyOf() -%}anyOf{%- endif -%}{%- if prop.allOf() -%}allOf{%- endif -%}{%- if prop.oneOf() %}oneOf{%- endif -%}{%- if prop.items().type %}({{prop.items().type()}}){%- endif -%}
+¦{{ prop.type() }}{%- if prop.anyOf() -%}anyOf{%- endif -%}{%- if prop.allOf() -%}allOf{%- endif -%}{%- if prop.oneOf() %}oneOf{%- endif -%}{%- if prop.items().type %}({{prop.items().type()}}){%- endif -%}{% if prop.contentEncoding() is defined %}[{{prop.contentEncoding()}}]{% endif %}
 ¦{{additionalDescription}} {{ prop.description() | safe }} {% if circular %}**[CIRCULAR]**{% endif %}
-¦{{ prop.enum() | acceptedValues | safe }}
+¦{% if prop.exclusiveMinimum() is defined %}{{ prop.exclusiveMinimum() | replace("-", "−") }} < {% endif %}{% if prop.minimum() is defined %}{{ prop.minimum() | replace("-", "−") }} ≤ {% endif %}{{ prop.enum() | acceptedValues | safe }} {% if prop.maximum() is defined %} ≤ {{ prop.maximum() | replace("-", "−") }} {% endif %}{% if prop.exclusiveMaximum() is defined %} < {{ prop.exclusiveMaximum() | replace("-", "−") }} {% endif %} {% if prop.pattern() %} +
+Matching the pattern: `{{prop.pattern()}}` {% endif %}{% if prop.examples() %} 
+ 
+Examples: 
+ 
+{% for ex in prop.examples() %}  * `{{ex}}`
+{% endfor %}
+{% endif %}
 
 {%- endmacro -%}

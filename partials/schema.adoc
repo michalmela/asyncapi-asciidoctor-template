@@ -3,7 +3,7 @@
 {% macro schema(schema, schemaName, singleRow=false) %}
 
 // {% if not singleRow %}
-[cols=",,,",options="header",separator="¦"]
+[cols=",,,a",options="header",separator="¦"]
 |===
 ¦Name ¦Type ¦Description ¦Accepted values
 // {% endif %}

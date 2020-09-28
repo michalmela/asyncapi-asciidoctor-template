@@ -23,6 +23,6 @@ filter.isRequired = isRequired;
 function acceptedValues(items) {
     if (!items) return '_Any_';
 
-    return items.map(i => `\`\`\`${i}\`\`\``).join(', ');
+    return items.map(i => `\`${i}\``).join(', ');
 };
 filter.acceptedValues = acceptedValues;
