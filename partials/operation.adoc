@@ -7,8 +7,8 @@
 {{ op.description() }}
 
 // {% if op.hasMultipleMessages() %}
-Accepts **one of** the following messages:
-// {%- endif -%}
+{% if op.isPublish() %}Accepts{% else %}Produces{% endif %} **one of** the following messages:
+// {% endif %}
 
 // {% for msg in op.messages() %}
 
@@ -16,6 +16,6 @@ Accepts **one of** the following messages:
 
 {{ message(msg) }}
 
-// {% endfor -%}
+// {% endfor %}
 
 {% endmacro %}

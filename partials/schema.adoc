@@ -5,7 +5,7 @@
 // {% if not singleRow %}
 [cols=",,,a",options="header",separator="¦"]
 |===
-¦Name ¦Type ¦Description ¦Accepted values
+¦Name ¦Type ¦Description ¦Possible values
 // {% endif %}
 {% for propName, prop in schema.properties() -%}
 {{ schemaProp(prop, propName, required=(schema | isRequired(propName)), path='') }}
