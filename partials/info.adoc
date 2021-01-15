@@ -13,7 +13,7 @@
 ¦URL ¦Protocol ¦Description 
 
 //{% for serverName, server in asyncapi.servers() %}
-¦{{server.url()}} ¦{{server.protocol()}}{% if server.protocolVersion() %}{{server.protocolVersion()}}{% endif %} ¦ {{server.description() | safe}}
+¦{{server.url()}} ¦{{server.protocol()}}{% if server.protocolVersion() %} {{server.protocolVersion()}}{% endif %} ¦ {{server.description() | safe}}
 
 //  {% if server.variables() and server.variables()[0] is defined %}
 3+a¦
